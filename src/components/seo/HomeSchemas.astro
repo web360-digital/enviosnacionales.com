@@ -1,0 +1,67 @@
+---
+import { FAQ_CONTENT } from "../../constants/home";
+import { SCHEMA_CONFIG } from "../../constants/schema";
+import { SITE_CONFIG } from "../../constants/site";
+
+import FaqSchema from "./FaqSchema.astro";
+import OrganizationSchema from "./OrganizationSchema.astro";
+import ServiceSchema from "./ServiceSchema.astro";
+import WebPageSchema from "./WebPageSchema.astro";
+import WebSiteSchema from "./WebSiteSchema.astro";
+
+const homeUrl = new URL(
+	"/",
+	SITE_CONFIG.url,
+).toString();
+
+const websiteId = `${homeUrl}#website`;
+const webpageId = `${homeUrl}#webpage`;
+const serviceId = `${homeUrl}#service`;
+const faqId = `${homeUrl}#faq`;
+
+const faqItems = FAQ_CONTENT.items.map((item) => ({
+	question: item.question,
+	answer: item.answer,
+}));
+---
+
+<OrganizationSchema
+	id={SCHEMA_CONFIG.organization.id}
+	name={SCHEMA_CONFIG.organization.name}
+	url={SCHEMA_CONFIG.organization.url}
+	logo={SCHEMA_CONFIG.organization.logo}
+/>
+
+<WebSiteSchema
+	id={websiteId}
+	name={SITE_CONFIG.name}
+	url={homeUrl}
+	language={SITE_CONFIG.language}
+	publisherId={SCHEMA_CONFIG.organization.id}
+/>
+
+<WebPageSchema
+	id={webpageId}
+	url={homeUrl}
+	title={SITE_CONFIG.title}
+	description={SITE_CONFIG.description}
+	websiteId={websiteId}
+	language={SITE_CONFIG.language}
+	publisherId={SCHEMA_CONFIG.organization.id}
+	mainEntityId={serviceId}
+/>
+
+<ServiceSchema
+	id={serviceId}
+	url={homeUrl}
+	name={SCHEMA_CONFIG.service.name}
+	serviceType={SCHEMA_CONFIG.service.serviceType}
+	description={SCHEMA_CONFIG.service.description}
+	areaServed={SCHEMA_CONFIG.service.areaServed}
+	providerId={SCHEMA_CONFIG.organization.id}
+/>
+
+<FaqSchema
+	id={faqId}
+	items={faqItems}
+/>

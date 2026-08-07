@@ -1,0 +1,314 @@
+---
+import { EXTERNAL_LINKS } from "../../constants/external-links";
+import { HERO_CONTENT } from "../../constants/home";
+
+import "../../styles/components/hero.css";
+---
+
+<section
+	class="hero"
+	aria-labelledby="hero-title"
+>
+	<div
+		class="hero__decoration hero__decoration--top"
+		aria-hidden="true"
+	></div>
+
+	<div
+		class="hero__decoration hero__decoration--bottom"
+		aria-hidden="true"
+	></div>
+
+	<div class="hero__container container">
+		<div class="hero__content">
+			<p class="hero__eyebrow">
+				<span
+					class="hero__eyebrow-icon"
+					aria-hidden="true"
+				>
+					<svg
+						viewBox="0 0 20 20"
+						width="16"
+						height="16"
+						fill="none"
+					>
+						<path
+							d="M3 6.7 10 3l7 3.7v6.6L10 17l-7-3.7V6.7Z"
+							stroke="currentColor"
+							stroke-width="1.5"
+							stroke-linejoin="round"
+						/>
+
+						<path
+							d="m3.4 6.9 6.6 3.4 6.6-3.4M10 10.3v6.3"
+							stroke="currentColor"
+							stroke-width="1.5"
+							stroke-linejoin="round"
+						/>
+					</svg>
+				</span>
+
+				{HERO_CONTENT.eyebrow}
+			</p>
+
+			<h1
+				id="hero-title"
+				class="hero__title"
+			>
+				Cotiza tus
+				<span class="hero__title-highlight">
+					envíos nacionales
+				</span>
+				en México
+			</h1>
+
+			<p class="hero__description">
+				{HERO_CONTENT.description}
+			</p>
+
+			<div class="hero__actions">
+				<a
+					class="hero__button hero__button--primary"
+					href={EXTERNAL_LINKS.heroQuote}
+					aria-label="Cotizar un envío nacional"
+				>
+					{HERO_CONTENT.primaryCta}
+
+					<svg
+						viewBox="0 0 20 20"
+						width="18"
+						height="18"
+						fill="none"
+						aria-hidden="true"
+					>
+						<path
+							d="M4 10h12M11 5l5 5-5 5"
+							stroke="currentColor"
+							stroke-width="1.8"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						/>
+					</svg>
+				</a>
+
+				<a
+					class="hero__button hero__button--secondary"
+					href="#como-funciona"
+				>
+					{HERO_CONTENT.secondaryCta}
+				</a>
+			</div>
+
+			<ul
+				class="hero__benefits"
+				aria-label="Beneficios del servicio"
+			>
+				{
+					HERO_CONTENT.benefits.map((benefit) => (
+						<li class="hero__benefit">
+							<span
+								class="hero__benefit-icon"
+								aria-hidden="true"
+							>
+								<svg
+									viewBox="0 0 16 16"
+									width="14"
+									height="14"
+									fill="none"
+								>
+									<path
+										d="m3.5 8.2 2.8 2.8 6.2-6.2"
+										stroke="currentColor"
+										stroke-width="1.8"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+									/>
+								</svg>
+							</span>
+
+							{benefit}
+						</li>
+					))
+				}
+			</ul>
+		</div>
+
+		<a
+            class="hero__visual"
+            href={EXTERNAL_LINKS.heroQuote}
+            aria-label="Cotizar un envío nacional"
+        >
+			<div class="hero__visual-background"></div>
+
+			<div class="quote-card">
+				<div class="quote-card__header">
+					<div>
+						<span class="quote-card__eyebrow">
+							Cotización nacional
+						</span>
+
+						<strong class="quote-card__title">
+							Calcula tu envío
+						</strong>
+					</div>
+
+					<span class="quote-card__package">
+						<svg
+							viewBox="0 0 24 24"
+							width="24"
+							height="24"
+							fill="none"
+						>
+							<path
+								d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5v-9Z"
+								stroke="currentColor"
+								stroke-width="1.7"
+								stroke-linejoin="round"
+							/>
+
+							<path
+								d="m3.5 7.7 8.5 4.2 8.5-4.2M12 12v8.5"
+								stroke="currentColor"
+								stroke-width="1.7"
+								stroke-linejoin="round"
+							/>
+						</svg>
+					</span>
+				</div>
+
+				<div class="quote-card__route">
+					<div class="quote-card__location">
+						<span class="quote-card__point"></span>
+
+						<div>
+							<span class="quote-card__label">
+								Origen
+							</span>
+
+							<strong>
+								Ciudad de México
+							</strong>
+						</div>
+					</div>
+
+					<div class="quote-card__route-line"></div>
+
+					<div class="quote-card__location">
+						<span
+							class="quote-card__point quote-card__point--destination"
+						></span>
+
+						<div>
+							<span class="quote-card__label">
+								Destino
+							</span>
+
+							<strong>
+								Monterrey, N.L.
+							</strong>
+						</div>
+					</div>
+				</div>
+
+				<div class="quote-card__details">
+					<div class="quote-card__detail">
+						<span>
+							Peso
+						</span>
+
+						<strong>
+							2.5 kg
+						</strong>
+					</div>
+
+					<div class="quote-card__detail">
+						<span>
+							Tipo
+						</span>
+
+						<strong>
+							Paquete
+						</strong>
+					</div>
+				</div>
+
+				<div class="quote-card__action">
+					Comparar opciones
+
+					<svg
+						viewBox="0 0 20 20"
+						width="17"
+						height="17"
+						fill="none"
+					>
+						<path
+							d="M4 10h12M11 5l5 5-5 5"
+							stroke="currentColor"
+							stroke-width="1.8"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+						/>
+					</svg>
+				</div>
+			</div>
+
+			<div class="hero__floating-card hero__floating-card--tracking">
+				<span class="hero__floating-icon">
+					<svg
+						viewBox="0 0 20 20"
+						width="18"
+						height="18"
+						fill="none"
+					>
+						<path
+							d="M10 17s5-4.3 5-9a5 5 0 1 0-10 0c0 4.7 5 9 5 9Z"
+							stroke="currentColor"
+							stroke-width="1.5"
+						/>
+
+						<circle
+							cx="10"
+							cy="8"
+							r="1.7"
+							stroke="currentColor"
+							stroke-width="1.5"
+						/>
+					</svg>
+				</span>
+
+				<span>
+					Rastreo en línea
+				</span>
+			</div>
+
+			<div class="hero__floating-card hero__floating-card--guide">
+				<span class="hero__floating-icon">
+					<svg
+						viewBox="0 0 20 20"
+						width="18"
+						height="18"
+						fill="none"
+					>
+						<path
+							d="M6 3h6l3 3v11H6V3Z"
+							stroke="currentColor"
+							stroke-width="1.5"
+							stroke-linejoin="round"
+						/>
+
+						<path
+							d="M12 3v4h3M8.5 11h4M8.5 14h4"
+							stroke="currentColor"
+							stroke-width="1.5"
+							stroke-linecap="round"
+						/>
+					</svg>
+				</span>
+
+				<span>
+					Guías digitales
+				</span>
+			</div>
+		</a>
+	</div>
+</section>

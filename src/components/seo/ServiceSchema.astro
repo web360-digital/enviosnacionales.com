@@ -1,0 +1,44 @@
+---
+import JsonLd from "./JsonLd.astro";
+
+interface Props {
+	id: string;
+	url: string;
+	name: string;
+	serviceType: string;
+	description: string;
+	areaServed: string;
+	providerId: string;
+}
+
+const {
+	id,
+	url,
+	name,
+	serviceType,
+	description,
+	areaServed,
+	providerId,
+} = Astro.props;
+
+const schema = {
+	"@context": "https://schema.org",
+	"@type": "Service",
+	"@id": id,
+	url,
+	name,
+	serviceType,
+	description,
+
+	areaServed: {
+		"@type": "Country",
+		name: areaServed,
+	},
+
+	provider: {
+		"@id": providerId,
+	},
+};
+---
+
+<JsonLd data={schema} />

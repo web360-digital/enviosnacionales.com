@@ -1,0 +1,125 @@
+---
+import { SITE_CONFIG } from "../constants/site";
+
+import "../styles/global.css";
+
+interface Props {
+	title?: string;
+	description?: string;
+	canonical?: string;
+	noindex?: boolean;
+}
+
+const {
+	title = SITE_CONFIG.title,
+	description = SITE_CONFIG.description,
+	canonical = new URL(
+		Astro.url.pathname,
+		SITE_CONFIG.url,
+	).toString(),
+	noindex = false,
+} = Astro.props;
+
+const robotsContent = noindex
+	? "noindex, nofollow"
+	: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
+---
+
+<!doctype html>
+<html lang={SITE_CONFIG.language}>
+	<head>
+		<meta charset="UTF-8" />
+
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1"
+		/>
+
+		<title>{title}</title>
+
+		<meta
+			name="description"
+			content={description}
+		/>
+
+		<meta
+			name="robots"
+			content={robotsContent}
+		/>
+
+		<meta
+			name="generator"
+			content={Astro.generator}
+		/>
+
+		<meta
+			name="theme-color"
+			content="#4f2a9d"
+		/>
+
+		<link
+			rel="canonical"
+			href={canonical}
+		/>
+
+		<!-- Favicon de DrEnvío -->
+		<link
+			rel="icon"
+			type="image/svg+xml"
+			href="https://cdn.drenvio.com/logo/drenvio.svg"
+		/>
+
+		<!-- Open Graph -->
+		<meta
+			property="og:type"
+			content="website"
+		/>
+
+		<meta
+			property="og:locale"
+			content={SITE_CONFIG.locale}
+		/>
+
+		<meta
+			property="og:site_name"
+			content={SITE_CONFIG.name}
+		/>
+
+		<meta
+			property="og:title"
+			content={title}
+		/>
+
+		<meta
+			property="og:description"
+			content={description}
+		/>
+
+		<meta
+			property="og:url"
+			content={canonical}
+		/>
+
+		<!-- Twitter -->
+		<meta
+			name="twitter:card"
+			content="summary"
+		/>
+
+		<meta
+			name="twitter:title"
+			content={title}
+		/>
+
+		<meta
+			name="twitter:description"
+			content={description}
+		/>
+
+		<slot name="head" />
+	</head>
+
+	<body>
+		<slot />
+	</body>
+</html>

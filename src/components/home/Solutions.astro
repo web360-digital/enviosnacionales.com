@@ -1,0 +1,299 @@
+---
+import { EXTERNAL_LINKS } from "../../constants/external-links";
+import { SOLUTIONS_CONTENT } from "../../constants/home";
+
+import "../../styles/components/solutions.css";
+
+const solutions = [
+	{
+		id: "drenvio",
+		name: "DrEnvío",
+		icon: "shipping",
+		description:
+			"Cotiza envíos nacionales, compara opciones de paquetería, genera tus guías y administra tus paquetes desde una sola plataforma.",
+		features: [
+			"Cotización en línea",
+			"Generación de guías",
+		],
+		href: EXTERNAL_LINKS.solutionsDrenvio,
+		linkLabel: "Conocer DrEnvío",
+		isPrimary: true,
+	},
+	...SOLUTIONS_CONTENT.items.map((solution) => ({
+		...solution,
+		isPrimary: false,
+	})),
+];
+---
+
+<section
+	id="soluciones"
+	class="solutions"
+	aria-labelledby="solutions-title"
+>
+	<div class="solutions__container container">
+		<div class="solutions__intro">
+			<p class="solutions__eyebrow">
+				<span aria-hidden="true"></span>
+
+				{SOLUTIONS_CONTENT.eyebrow}
+			</p>
+
+			<h2
+				id="solutions-title"
+				class="solutions__title"
+			>
+				Más herramientas para
+				<span>fortalecer tu operación</span>
+			</h2>
+
+			<p class="solutions__description">
+				{SOLUTIONS_CONTENT.description}
+			</p>
+
+			<ul
+				class="solutions__categories"
+				aria-label="Tipos de soluciones disponibles"
+			>
+				<li>Envíos</li>
+				<li>Pagos</li>
+				<li>Logística</li>
+				<li>Fulfillment</li>
+			</ul>
+		</div>
+
+		<div class="solutions__list">
+			{
+				solutions.map((solution, index) => (
+					<article
+						class:list={[
+							"solution-panel",
+							{
+								"solution-panel--primary":
+									solution.isPrimary,
+							},
+						]}
+					>
+						<div
+							class="solution-panel__icon"
+							aria-hidden="true"
+						>
+							{
+								solution.icon === "shipping" && (
+									<svg
+										viewBox="0 0 24 24"
+										width="25"
+										height="25"
+										fill="none"
+									>
+										<path
+											d="M4 7.5 12 3l8 4.5v9L12 21l-8-4.5v-9Z"
+											stroke="currentColor"
+											stroke-width="1.7"
+											stroke-linejoin="round"
+										/>
+
+										<path
+											d="m4.5 7.7 7.5 3.8 7.5-3.8M12 11.5V21"
+											stroke="currentColor"
+											stroke-width="1.7"
+											stroke-linejoin="round"
+										/>
+
+										<path
+											d="M8.5 9.7 16.5 5.2"
+											stroke="currentColor"
+											stroke-width="1.7"
+											stroke-linecap="round"
+										/>
+									</svg>
+								)
+							}
+
+							{
+								solution.icon === "payments" && (
+									<svg
+										viewBox="0 0 24 24"
+										width="25"
+										height="25"
+										fill="none"
+									>
+										<rect
+											x="3"
+											y="5"
+											width="18"
+											height="14"
+											rx="3"
+											stroke="currentColor"
+											stroke-width="1.7"
+										/>
+
+										<path
+											d="M3 9h18M7 15h4"
+											stroke="currentColor"
+											stroke-width="1.7"
+											stroke-linecap="round"
+										/>
+									</svg>
+								)
+							}
+
+							{
+								solution.icon === "operations" && (
+									<svg
+										viewBox="0 0 24 24"
+										width="25"
+										height="25"
+										fill="none"
+									>
+										<path
+											d="M4 7.5 12 3l8 4.5v9L12 21l-8-4.5v-9Z"
+											stroke="currentColor"
+											stroke-width="1.7"
+											stroke-linejoin="round"
+										/>
+
+										<path
+											d="m4.5 7.7 7.5 3.8 7.5-3.8M12 11.5V21"
+											stroke="currentColor"
+											stroke-width="1.7"
+											stroke-linejoin="round"
+										/>
+									</svg>
+								)
+							}
+
+							{
+								solution.icon === "inventory" && (
+									<svg
+										viewBox="0 0 24 24"
+										width="25"
+										height="25"
+										fill="none"
+									>
+										<path
+											d="M5 4h14v16H5V4Z"
+											stroke="currentColor"
+											stroke-width="1.7"
+											stroke-linejoin="round"
+										/>
+
+										<path
+											d="M9 4v5h6V4M8.5 14h7"
+											stroke="currentColor"
+											stroke-width="1.7"
+											stroke-linecap="round"
+										/>
+									</svg>
+								)
+							}
+						</div>
+
+						<div class="solution-panel__content">
+							<div class="solution-panel__heading">
+								<span class="solution-panel__number">
+									{String(index + 1).padStart(2, "0")}
+								</span>
+
+								<h3 class="solution-panel__title">
+									{solution.name}
+								</h3>
+
+								{
+									solution.isPrimary && (
+										<span class="solution-panel__badge">
+											Plataforma principal
+										</span>
+									)
+								}
+							</div>
+
+							<p class="solution-panel__description">
+								{solution.description}
+							</p>
+
+							<ul class="solution-panel__features">
+								{
+									solution.features.map((feature) => (
+										<li>
+											<span aria-hidden="true">
+												<svg
+													viewBox="0 0 16 16"
+													width="12"
+													height="12"
+													fill="none"
+												>
+													<path
+														d="m3.5 8.2 2.8 2.8 6.2-6.2"
+														stroke="currentColor"
+														stroke-width="1.8"
+														stroke-linecap="round"
+														stroke-linejoin="round"
+													/>
+												</svg>
+											</span>
+
+											{feature}
+										</li>
+									))
+								}
+							</ul>
+						</div>
+
+						{
+							solution.href ? (
+								<a
+									class="solution-panel__link"
+									href={solution.href}
+									aria-label={solution.linkLabel}
+								>
+									<span class="visually-hidden">
+										{solution.linkLabel}
+									</span>
+
+									<svg
+										viewBox="0 0 20 20"
+										width="19"
+										height="19"
+										fill="none"
+										aria-hidden="true"
+									>
+										<path
+											d="M4 10h12M11 5l5 5-5 5"
+											stroke="currentColor"
+											stroke-width="1.8"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+										/>
+									</svg>
+								</a>
+							) : (
+								<span
+									class="solution-panel__link solution-panel__link--disabled"
+									aria-label={`${solution.linkLabel}, próximamente`}
+									role="img"
+								>
+									<svg
+										viewBox="0 0 20 20"
+										width="19"
+										height="19"
+										fill="none"
+										aria-hidden="true"
+									>
+										<path
+											d="M4 10h12M11 5l5 5-5 5"
+											stroke="currentColor"
+											stroke-width="1.8"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+										/>
+									</svg>
+								</span>
+							)
+						}
+					</article>
+				))
+			}
+		</div>
+	</div>
+</section>

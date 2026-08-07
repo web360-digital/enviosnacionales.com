@@ -1,0 +1,225 @@
+---
+import { HOW_IT_WORKS_CONTENT } from "../../constants/home";
+
+import "../../styles/components/how-it-works.css";
+---
+
+<section
+	id="como-funciona"
+	class="how-it-works"
+	aria-labelledby="how-it-works-title"
+>
+	<div class="how-it-works__container container">
+		<header class="how-it-works__header">
+			<div class="how-it-works__heading">
+				<p class="how-it-works__eyebrow">
+					<span aria-hidden="true"></span>
+
+					{HOW_IT_WORKS_CONTENT.eyebrow}
+				</p>
+
+				<h2
+					id="how-it-works-title"
+					class="how-it-works__title"
+				>
+					{HOW_IT_WORKS_CONTENT.title}
+				</h2>
+			</div>
+
+			<p class="how-it-works__description">
+				{HOW_IT_WORKS_CONTENT.description}
+			</p>
+		</header>
+
+		<div class="how-it-works__steps-area">
+	<div
+		class="how-it-works__scroll-hint"
+		aria-hidden="true"
+	>
+		<span>Desliza para ver más</span>
+
+		<svg
+			viewBox="0 0 24 24"
+			width="18"
+			height="18"
+			fill="none"
+		>
+			<path
+				d="M5 12h14M14 7l5 5-5 5"
+				stroke="currentColor"
+				stroke-width="1.8"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+			/>
+		</svg>
+	</div>
+
+        <ol
+            class="how-it-works__steps"
+            tabindex="0"
+            aria-label="Pasos para realizar un envío. En dispositivos móviles, desliza horizontalmente para ver todos los pasos."
+        >
+            {
+                HOW_IT_WORKS_CONTENT.steps.map((step, index) => (
+                    <li class="how-it-works__step">
+                        <div class="how-it-works__step-top">
+                            <span
+                                class="how-it-works__icon"
+                                aria-hidden="true"
+                            >
+                                {
+                                    step.icon === "quote" && (
+                                        <svg
+                                            viewBox="0 0 24 24"
+                                            width="24"
+                                            height="24"
+                                            fill="none"
+                                        >
+                                            <path
+                                                d="M4 6.5h16v11H4v-11Z"
+                                                stroke="currentColor"
+                                                stroke-width="1.7"
+                                                stroke-linejoin="round"
+                                            />
+
+                                            <path
+                                                d="M7.5 10h4M7.5 13.5h7"
+                                                stroke="currentColor"
+                                                stroke-width="1.7"
+                                                stroke-linecap="round"
+                                            />
+                                        </svg>
+                                    )
+                                }
+
+                                {
+                                    step.icon === "compare" && (
+                                        <svg
+                                            viewBox="0 0 24 24"
+                                            width="24"
+                                            height="24"
+                                            fill="none"
+                                        >
+                                            <path
+                                                d="M7 5v14M17 5v14"
+                                                stroke="currentColor"
+                                                stroke-width="1.7"
+                                                stroke-linecap="round"
+                                            />
+
+                                            <path
+                                                d="m4 8 3-3 3 3M14 16l3 3 3-3"
+                                                stroke="currentColor"
+                                                stroke-width="1.7"
+                                                stroke-linecap="round"
+                                                stroke-linejoin="round"
+                                            />
+                                        </svg>
+                                    )
+                                }
+
+                                {
+                                    step.icon === "guide" && (
+                                        <svg
+                                            viewBox="0 0 24 24"
+                                            width="24"
+                                            height="24"
+                                            fill="none"
+                                        >
+                                            <path
+                                                d="M6 3.5h8l4 4v13H6v-17Z"
+                                                stroke="currentColor"
+                                                stroke-width="1.7"
+                                                stroke-linejoin="round"
+                                            />
+
+                                            <path
+                                                d="M14 3.5v4h4M9 12h6M9 15.5h6"
+                                                stroke="currentColor"
+                                                stroke-width="1.7"
+                                                stroke-linecap="round"
+                                            />
+                                        </svg>
+                                    )
+                                }
+                            </span>
+
+                            <span class="how-it-works__number">
+                                {step.number}
+                            </span>
+                        </div>
+
+                        <h3 class="how-it-works__step-title">
+                            {step.title}
+                        </h3>
+
+                        <p class="how-it-works__step-description">
+                            {step.description}
+                        </p>
+
+                        {
+                            index < HOW_IT_WORKS_CONTENT.steps.length - 1 && (
+                                <span
+                                    class="how-it-works__connector"
+                                    aria-hidden="true"
+                                >
+                                    <svg
+                                        viewBox="0 0 24 24"
+                                        width="20"
+                                        height="20"
+                                        fill="none"
+                                    >
+                                        <path
+                                            d="M5 12h14M14 7l5 5-5 5"
+                                            stroke="currentColor"
+                                            stroke-width="1.7"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        />
+                                    </svg>
+                                </span>
+                            )
+                        }
+                    </li>
+                ))
+            }
+        </ol>
+    </div>
+
+		<div class="how-it-works__summary">
+			<p class="how-it-works__summary-text">
+				{HOW_IT_WORKS_CONTENT.summary}
+			</p>
+
+			<ul
+				class="how-it-works__highlights"
+				aria-label="Características de los envíos nacionales"
+			>
+				{
+					HOW_IT_WORKS_CONTENT.highlights.map((highlight) => (
+						<li>
+							<span aria-hidden="true">
+								<svg
+									viewBox="0 0 16 16"
+									width="14"
+									height="14"
+									fill="none"
+								>
+									<path
+										d="m3.5 8.2 2.8 2.8 6.2-6.2"
+										stroke="currentColor"
+										stroke-width="1.8"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+									/>
+								</svg>
+							</span>
+
+							{highlight}
+						</li>
+					))
+				}
+			</ul>
+		</div>
+	</div>
+</section>

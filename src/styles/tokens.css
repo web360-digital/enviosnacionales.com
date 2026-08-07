@@ -1,0 +1,36 @@
+:root {
+	/* Colores provisionales de marca */
+	--color-primary-50: #f7f4ff;
+	--color-primary-100: #eee8ff;
+	--color-primary-500: #7145d6;
+	--color-primary-600: #6034c5;
+	--color-primary-700: #4e27a7;
+
+	--color-text-primary: #211a35;
+	--color-text-secondary: #665e78;
+	--color-border: #e9e5f0;
+	--color-background: #ffffff;
+	--color-background-soft: #faf9fc;
+	--color-white: #ffffff;
+
+	/* Tipografía */
+	--font-family-base:
+		Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+	/* Layout */
+	--container-max-width: 1180px;
+	--header-height: 72px;
+
+	/* Bordes */
+	--radius-small: 10px;
+	--radius-medium: 16px;
+	--radius-pill: 999px;
+
+	/* Sombras */
+	--shadow-header: 0 10px 30px rgb(40 25 80 / 8%);
+	--shadow-button: 0 10px 22px rgb(96 52 197 / 22%);
+	--shadow-menu: 0 20px 50px rgb(40 25 80 / 16%);
+
+	/* Animaciones */
+	--transition-fast: 180ms ease;
+}

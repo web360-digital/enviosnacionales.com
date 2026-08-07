@@ -1,0 +1,162 @@
+---
+import { EXTERNAL_LINKS } from "../../constants/external-links";
+import { HEADER_NAVIGATION } from "../../constants/navigation";
+import { SITE_CONFIG } from "../../constants/site";
+
+import "../../styles/components/header.css";
+---
+
+<header
+	class="site-header"
+	data-site-header
+>
+	<div class="site-header__inner container">
+		<a
+			class="site-header__brand"
+			href={SITE_CONFIG.homeUrl}
+			aria-label={`${SITE_CONFIG.name}, ir al inicio`}
+		>
+			<span class="site-header__brand-icon" aria-hidden="true">
+				<svg
+					viewBox="0 0 24 24"
+					width="24"
+					height="24"
+					fill="none"
+				>
+					<path
+						d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5v-9Z"
+						stroke="currentColor"
+						stroke-width="1.8"
+						stroke-linejoin="round"
+					/>
+					<path
+						d="m3.5 7.7 8.5 4.2 8.5-4.2M12 12v8.5"
+						stroke="currentColor"
+						stroke-width="1.8"
+						stroke-linejoin="round"
+					/>
+				</svg>
+			</span>
+
+			<span class="site-header__brand-copy">
+				<strong class="site-header__brand-name">
+					{SITE_CONFIG.name}
+				</strong>
+
+				<span class="site-header__brand-description">
+					Envíos dentro de México
+				</span>
+			</span>
+		</a>
+
+		<nav
+			id="main-navigation"
+			class="site-header__navigation"
+			aria-label="Navegación principal"
+			data-navigation
+		>
+			<ul class="site-header__links">
+				{
+					HEADER_NAVIGATION.map((item) => (
+						<li>
+							<a
+								class="site-header__link"
+								href={item.href}
+							>
+								{item.label}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+
+			<a
+				class="site-header__cta"
+				href={EXTERNAL_LINKS.headerQuote}
+				aria-label="Cotizar un envío nacional"
+			>
+				Cotizar envío
+			</a>
+		</nav>
+
+		<button
+			class="site-header__menu-button"
+			type="button"
+			aria-label="Abrir menú"
+			aria-controls="main-navigation"
+			aria-expanded="false"
+			data-menu-button
+		>
+			<span class="visually-hidden">
+				Abrir menú de navegación
+			</span>
+
+			<span
+				class="site-header__menu-icon"
+				aria-hidden="true"
+			>
+				<span class="site-header__menu-line"></span>
+				<span class="site-header__menu-line"></span>
+				<span class="site-header__menu-line"></span>
+			</span>
+		</button>
+	</div>
+</header>
+
+<script>
+	const header =
+		document.querySelector<HTMLElement>("[data-site-header]");
+
+	const menuButton =
+		header?.querySelector<HTMLButtonElement>(
+			"[data-menu-button]",
+		);
+
+	const navigation =
+		header?.querySelector<HTMLElement>("[data-navigation]");
+
+	const setMenuState = (isOpen: boolean) => {
+		if (!header || !menuButton) {
+			return;
+		}
+
+		header.toggleAttribute("data-menu-open", isOpen);
+
+		menuButton.setAttribute(
+			"aria-expanded",
+			String(isOpen),
+		);
+
+		menuButton.setAttribute(
+			"aria-label",
+			isOpen ? "Cerrar menú" : "Abrir menú",
+		);
+	};
+
+	menuButton?.addEventListener("click", () => {
+		const isOpen =
+			menuButton.getAttribute("aria-expanded") === "true";
+
+		setMenuState(!isOpen);
+	});
+
+	navigation
+		?.querySelectorAll<HTMLAnchorElement>("a")
+		.forEach((link) => {
+			link.addEventListener("click", () => {
+				setMenuState(false);
+			});
+		});
+
+	document.addEventListener("keydown", (event) => {
+		if (event.key === "Escape") {
+			setMenuState(false);
+		}
+	});
+
+	window.addEventListener("resize", () => {
+		if (window.innerWidth > 860) {
+			setMenuState(false);
+		}
+	});
+</script>

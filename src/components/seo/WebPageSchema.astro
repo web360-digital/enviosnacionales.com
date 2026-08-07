@@ -1,0 +1,57 @@
+---
+import JsonLd from "./JsonLd.astro";
+
+interface Props {
+	id: string;
+	url: string;
+	title: string;
+	description: string;
+	websiteId: string;
+	language?: string;
+	publisherId?: string;
+	mainEntityId?: string;
+}
+
+const {
+	id,
+	url,
+	title,
+	description,
+	websiteId,
+	language = "es-MX",
+	publisherId,
+	mainEntityId,
+} = Astro.props;
+
+const schema = {
+	"@context": "https://schema.org",
+	"@type": "WebPage",
+	"@id": id,
+	url,
+	name: title,
+	description,
+	inLanguage: language,
+
+	isPartOf: {
+		"@id": websiteId,
+	},
+
+	...(publisherId
+		? {
+				publisher: {
+					"@id": publisherId,
+				},
+			}
+		: {}),
+
+	...(mainEntityId
+		? {
+				mainEntity: {
+					"@id": mainEntityId,
+				},
+			}
+		: {}),
+};
+---
+
+<JsonLd data={schema} />

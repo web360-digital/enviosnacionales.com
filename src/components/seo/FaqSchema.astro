@@ -1,0 +1,51 @@
+---
+import JsonLd from "./JsonLd.astro";
+
+interface FaqItem {
+	question: string;
+	answer: string;
+}
+
+interface Props {
+	items: readonly FaqItem[];
+	id?: string;
+}
+
+const {
+	items,
+	id,
+} = Astro.props;
+
+const validItems = items.filter(
+	(item) =>
+		item.question.trim().length > 0 &&
+		item.answer.trim().length > 0,
+);
+
+const schema = {
+	"@context": "https://schema.org",
+	"@type": "FAQPage",
+
+	...(id
+		? {
+				"@id": id,
+			}
+		: {}),
+
+	mainEntity: validItems.map((item) => ({
+		"@type": "Question",
+		name: item.question,
+
+		acceptedAnswer: {
+			"@type": "Answer",
+			text: item.answer,
+		},
+	})),
+};
+---
+
+{
+	validItems.length > 0 && (
+		<JsonLd data={schema} />
+	)
+}
