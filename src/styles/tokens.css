@@ -15,7 +15,7 @@
 
 	/* Tipografía */
 	--font-family-base:
-		Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+		var(--font-inter), Arial, sans-serif;
 
 	/* Layout */
 	--container-max-width: 1180px;
