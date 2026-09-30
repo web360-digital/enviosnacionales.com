@@ -27,57 +27,24 @@
 .site-header__brand {
 	display: inline-flex;
 	align-items: center;
-	flex-shrink: 0;
-	gap: 11px;
+	flex-shrink: 1;
+	min-width: 0;
 	color: var(--color-text-primary);
 	text-decoration: none;
 }
 
-.site-header__brand-icon {
-	display: grid;
-	place-items: center;
-	width: 42px;
-	height: 42px;
-	flex-shrink: 0;
-	background: var(--color-primary-50);
-	border: 1px solid var(--color-primary-100);
-	border-radius: 13px;
-	color: var(--color-primary-600);
-	transition:
-		background var(--transition-fast),
-		border-color var(--transition-fast),
-		color var(--transition-fast),
-		transform var(--transition-fast);
+.site-header__logo {
+	display: block;
+	width: 210px;
+	height: auto;
+	max-width: 100%;
+	aspect-ratio: 606 / 132;
+	object-fit: contain;
+	transition: opacity var(--transition-fast);
 }
 
-.site-header__brand:hover .site-header__brand-icon {
-	background: var(--color-primary-100);
-	border-color: var(--color-primary-500);
-	color: var(--color-primary-700);
-	transform: translateY(-1px);
-}
-
-.site-header__brand-copy {
-	display: flex;
-	flex-direction: column;
-	line-height: 1.1;
-}
-
-.site-header__brand-name {
-	color: var(--color-text-primary);
-	font-size: 1rem;
-	font-weight: 800;
-	letter-spacing: -0.02em;
-	white-space: nowrap;
-}
-
-.site-header__brand-description {
-	margin-top: 4px;
-	color: var(--color-text-secondary);
-	font-size: 0.7rem;
-	font-weight: 500;
-	letter-spacing: 0.01em;
-	white-space: nowrap;
+.site-header__brand:hover .site-header__logo {
+	opacity: 0.82;
 }
 
 /* =========================================================
@@ -278,6 +245,10 @@
 		gap: 16px;
 	}
 
+	.site-header__logo {
+		width: 188px;
+	}
+
 	.site-header__navigation {
 		position: absolute;
 		top: calc(100% + 10px);
@@ -343,36 +314,8 @@
 		gap: 12px;
 	}
 
-	.site-header__brand {
-		min-width: 0;
-		gap: 8px;
-	}
-
-	.site-header__brand-icon {
-		width: 40px;
-		height: 40px;
-		border-radius: 12px;
-	}
-
-	.site-header__brand-icon svg {
-		width: 22px;
-		height: 22px;
-	}
-
-	.site-header__brand-copy {
-		min-width: 0;
-	}
-
-	.site-header__brand-name {
-		max-width: 180px;
-		overflow: hidden;
-		font-size: 0.92rem;
-		text-overflow: ellipsis;
-		white-space: nowrap;
-	}
-
-	.site-header__brand-description {
-		display: none;
+	.site-header__logo {
+		width: min(168px, calc(100vw - 120px));
 	}
 
 	.site-header__navigation {
@@ -390,14 +333,8 @@
    ========================================================= */
 
 @media (max-width: 370px) {
-	.site-header__brand-name {
-		max-width: 145px;
-		font-size: 0.86rem;
-	}
-
-	.site-header__brand-icon {
-		width: 38px;
-		height: 38px;
+	.site-header__logo {
+		width: min(148px, calc(100vw - 108px));
 	}
 
 	.site-header__menu-button {
@@ -427,7 +364,7 @@
    ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
-	.site-header__brand-icon,
+	.site-header__logo,
 	.site-header__link,
 	.site-header__link::after,
 	.site-header__cta,
