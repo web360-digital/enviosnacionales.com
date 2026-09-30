@@ -1,5 +1,6 @@
 ---
 import { SITE_CONFIG } from "../constants/site";
+import { Font } from "astro:assets";
 
 import "../styles/global.css";
 
@@ -29,6 +30,7 @@ const robotsContent = noindex
 <html lang={SITE_CONFIG.language}>
 	<head>
 		<meta charset="UTF-8" />
+		<Font cssVariable="--font-inter" preload />
 
 		<meta
 			name="viewport"
